@@ -31,6 +31,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.function.IntConsumer;
 import java.util.function.Predicate;
 
@@ -156,6 +157,21 @@ public interface BaseStream<T, S extends BaseStream<T, S>>
      * @return a stream with a handler that is run if the stream is closed
      */
     S onClose(Runnable closeHandler);
+
+    /**
+     * This method allows the application of a function to {@code this}
+     * stream to produce an {@code R} result.
+     *
+     * @param transformer a function to apply to this stream
+     * @param <R> the type of the result
+     * @return the result of applying the function to this stream
+     * @see java.util.function.Function
+     * @since 21
+     */
+    @SuppressWarnings("unchecked")
+    default <R> R transform(Function<? super S, ? extends R> transformer) {
+        return transformer.apply((S) this);
+    }
 
     /**
      * Closes this stream, causing all close handlers for this stream pipeline
