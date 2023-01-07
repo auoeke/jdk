@@ -159,8 +159,7 @@ public interface BaseStream<T, S extends BaseStream<T, S>>
     S onClose(Runnable closeHandler);
 
     /**
-     * This method allows the application of a function to {@code this}
-     * stream to produce an {@code R} result.
+     * Returns the result of applying a function to {@code this} stream.
      *
      * @param transformer a function to apply to this stream
      * @param <R> the type of the result
