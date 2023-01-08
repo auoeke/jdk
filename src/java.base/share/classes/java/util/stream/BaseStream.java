@@ -164,7 +164,6 @@ public interface BaseStream<T, S extends BaseStream<T, S>>
      * @param transformer a function to apply to this stream
      * @param <R> the type of the result
      * @return the result of applying the function to this stream
-     * @see java.util.function.Function
      * @since 21
      */
     @SuppressWarnings("unchecked")
